@@ -9,11 +9,16 @@ function getServerDomain() {
     var domain = null;
     if (configJSON.useNativeXHR !== true && baseUrl && baseUrl.indexOf('://')) {
         domain = baseUrl.substring(baseUrl.indexOf('://') + 3);
-        if (domain.indexOf('/')) {
+        if (domain.indexOf('/') >= 0) {
             domain = domain.substring(0, domain.indexOf('/'));
         } 
     }
     return domain;
+}
+
+function isHttps() {
+    var configJSON = JSON.parse(fs.readFileSync(projectDir + '/www/config.json').toString());
+    return configJSON.baseUrl.indexOf('https://') === 0;
 }
 
 function addPreferences(context) {
@@ -25,6 +30,10 @@ function addPreferences(context) {
         android.append(new et.Element('preference', {
             'name': 'hostname',
             'value': getServerDomain()
+        }));
+        android.append(new et.Element('preference', {
+            'name': 'scheme',
+            'value': isHttps() ? 'https': 'http'
         }));
         const modifiedConfigXML = et.tostring(configXML.getroot());
         console.log(modifiedConfigXML);
