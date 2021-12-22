@@ -19,7 +19,7 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
-    xmlns:android="http://schemas.android.com/apk/res/android" id="wm-cordova-plugin-common" version="1.0.1">
+    xmlns:android="http://schemas.android.com/apk/res/android" id="wm-cordova-plugin-common" version="1.0.2">
     <name>wm-cordova-plugin-common</name>
     <description>A Cordova plugin that provides common requirements to all WaveMaker mobile applications.</description>
     <license>Apache 2.0</license>
