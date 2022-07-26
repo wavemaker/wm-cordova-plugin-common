@@ -24,6 +24,9 @@
     <description>A Cordova plugin that provides common requirements to all WaveMaker mobile applications.</description>
     <license>Apache 2.0</license>
     <keywords>cordova,wavemaker</keywords>
+    <js-module src="www/datePicker.js" name="datePicker">
+        <clobbers target="cordova.wavemaker.datePicker" />
+    </js-module>
     <!-- android -->
     <platform name="android">
         <hook type="before_plugin_install" src="hooks/android/before_plugin_install.js"/>
@@ -38,5 +41,15 @@
         <source-file src="src/android/FilePathHandler.java" target-dir="src/com/wavemaker/cordova/plugin" />
 
         <framework src="androidx.webkit:webkit:${cordovaConfig.ANDROIDX_WEBKIT_VERSION}" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="WMCommonPlugin">
+                <param name="ios-package" value="WMCommonPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/WMCommonPlugin.swift" />
+        <source-file src="src/ios/WMDateTimePicker.swift" />
     </platform>
 </plugin>
