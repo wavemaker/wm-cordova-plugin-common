@@ -37,7 +37,7 @@ This will be called after the user taps on either ok or reset button.
 | date | represents the user selected value, if user taps on ok button. If user taps on RESET button, empty will be returned.|
 	
 ##### errorCallback(error)
-This will called if any exception happens.
+This will be called if any exception happens.
 
 | Date | Date and Time | Time |
 --|--|--

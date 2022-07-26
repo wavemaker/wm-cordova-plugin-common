@@ -19,7 +19,6 @@
 
 
 import Foundation
-@available(iOS 13, *)
 @objc(WMCommonPlugin)
 public class WMCommonPlugin: CDVPlugin {
     
@@ -29,14 +28,12 @@ public class WMCommonPlugin: CDVPlugin {
         let service = options["service"] as! String;
         let operation = options["operation"] as! String;
         if (service == "DATE_PICKER") {
-            if #available(iOS 14, *) {
-                if (operation == "selectDate") {
-                    WMDatePicker(cdvPlugin: self).selectDate(command: command);
-                }
+            if (operation == "selectDate") {
+                WMDatePicker(cdvPlugin: self).selectDate(command: command);
+                return;
             }
-        } else {
-            let result = CDVPluginResult(status: CDVCommandStatus_INVALID_ACTION);
-            self.commandDelegate.send(result, callbackId: command.callbackId);
         }
+        let result = CDVPluginResult(status: CDVCommandStatus_INVALID_ACTION);
+        self.commandDelegate.send(result, callbackId: command.callbackId);
     }
 }

@@ -30,13 +30,6 @@ public class WMDatePickerConfig {
     public var title = "Select Date";
 }
 
-let DIALOG_HEIGHTS = [
-    "DATE": 380,
-    "TIME": 280,
-    "DATE_TIME": 420
-];
-
-@available(iOS 14, *)
 struct DatePickerView: View {
     @State public var selectedDate: Date = Date();
     var minDate: Date = Date();
@@ -58,13 +51,23 @@ struct DatePickerView: View {
                     )
                     .datePickerStyle(.wheel)
                 } else {
-                    DatePicker(
-                        self.title,
-                        selection: $selectedDate,
-                        in: self.minDate...self.maxDate,
-                        displayedComponents: self.mode == "DATE" ? [.date] : [.date, .hourAndMinute]
-                    )
-                    .datePickerStyle(.graphical)
+                    if #available(iOS 14.0, *) {
+                        DatePicker(
+                            self.title,
+                            selection: $selectedDate,
+                            in: self.minDate...self.maxDate,
+                            displayedComponents: self.mode == "DATE" ? [.date] : [.date, .hourAndMinute]
+                        )
+                        .datePickerStyle(.graphical)
+                    } else {
+                        DatePicker(
+                            self.title,
+                            selection: $selectedDate,
+                            in: self.minDate...self.maxDate,
+                            displayedComponents: self.mode == "DATE" ? [.date] : [.date, .hourAndMinute]
+                        )
+                        .datePickerStyle(.wheel)
+                    }
                 }
                 HStack(alignment: .center, spacing: 10, content: {
                     Button("Reset", action: {
@@ -74,12 +77,11 @@ struct DatePickerView: View {
                         (self.onComplete!)("OK", self.selectedDate);
                     }).frame(maxWidth: .infinity, alignment: .trailing)
                 })
-            }.frame(width: 320, height: CGFloat(DIALOG_HEIGHTS[self.mode] ?? 0), alignment: .center).padding(16)
+            }.frame(maxWidth: 320, alignment: .center).padding(16)
         }.background(Color.white).cornerRadius(8)
     }
 }
 
-@available(iOS 14, *)
 public class WMDatePicker {
     var cdvPlugin: CDVPlugin;
     var onComplete: ((_ type: String, _ date: Date?) -> ())? = nil;
