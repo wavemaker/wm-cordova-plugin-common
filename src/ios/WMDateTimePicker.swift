@@ -78,7 +78,7 @@ struct DatePickerView: View {
                     }).frame(maxWidth: .infinity, alignment: .trailing)
                 })
             }.frame(maxWidth: 320, alignment: .center).padding(16)
-        }.background(Color.white).cornerRadius(8)
+        }.background(Color(UIColor.systemBackground)).cornerRadius(8)
     }
 }
 
