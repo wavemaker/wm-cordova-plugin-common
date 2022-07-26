@@ -14,7 +14,7 @@ A Cordova plugin that provides common requirements and API to all WaveMaker mobi
 
 ### Date Picker
 #### cordova.wavemaker.datePicker.selectDate(options, successCallback, errorCallback)
-shows calendar UI to the user for select date and time selection. Following are the arguments.
+shows calendar UI to the user for date and time selection. Following are the arguments.
 
 **NOTE:** If mode is selected as TIME, minDate and maxDate should be same but with different times.
 
@@ -38,6 +38,10 @@ This will be called after the user taps on either ok or reset button.
 	
 ##### errorCallback(error)
 This will called if any exception happens.
+
+| Date | Date and Time | Time |
+--|--|--
+| <img src="assets/datePicker/date.png" width="200px"> | <img src="assets/datePicker/date_time.png" width="200px"> | <img src="assets/datePicker/time.png" width="200px"> |
   
 
 ## License
