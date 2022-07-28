@@ -108,10 +108,16 @@ public class WMDatePicker {
         if ((options["minDate"]) != nil
             && (options["minDate"] as! Double) != 0) {
             config.minDate = Date(timeIntervalSince1970: (options["minDate"] as! Double) / 1000);
+            if (config.selectedDate < config.minDate) {
+                config.selectedDate = config.minDate;
+            }
         }
         if (options["maxDate"] != nil
             && (options["maxDate"] as! Double) != 0) {
             config.maxDate = Date(timeIntervalSince1970: (options["maxDate"] as! Double) / 1000);
+            if (config.selectedDate > config.maxDate) {
+                config.selectedDate = config.maxDate;
+            }
         }
         if (options["mode"] != nil) {
             config.mode = options["mode"] as! String;
