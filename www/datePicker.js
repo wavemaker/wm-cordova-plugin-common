@@ -46,6 +46,9 @@ DatePicker.prototype.selectDate = function(options, successCallback, errorCallba
             delete options[k];
         }
     });
+    if (options.maxDate && options.minDate) {
+        options.minDate = Math.min(options.minDate, options.maxDate);
+    }
     exec(function(result) {
         if (result.type === 'CANCEL') {
             result.date = options.selectedDate;
