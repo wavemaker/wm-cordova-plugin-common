@@ -10,6 +10,10 @@ A Cordova plugin that provides common requirements and API to all WaveMaker mobi
 
 - Set value to useNativeXHR as true in config.json.
 
+2. Cookies between web view and Cookie Manager are synced automatically, but with some delay. To manual trigger cookie synchronization, following method is added.
+
+```cordova.wavemaker.syncCookies();```
+
 ## iOS
 
 ### Date Picker

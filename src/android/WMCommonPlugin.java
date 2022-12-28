@@ -28,15 +28,16 @@ import org.json.JSONObject;
 
 import android.Manifest;
 import android.util.Log;
+import android.webkit.CookieManager;
 
-public class CommonPlugin extends CordovaPlugin {
+public class WMCommonPlugin extends CordovaPlugin {
     private static final String TAG = "WM_COMMON";
 
     CordovaPluginPathHandler pathHandler;
     /**
      * Constructor.
      */
-    public CommonPlugin() {
+    public WMCommonPlugin() {
         Log.d(TAG, "WaveMaker Common instance created");
     }
 
@@ -53,6 +54,9 @@ public class CommonPlugin extends CordovaPlugin {
             JSONObject options = args.getJSONObject(0);
             String name = options.getString("name");
             callbackContext.success(this.preferences.getAll().get("name"));
+        } else if ("syncCookies".equals(action)) {
+            CookieManager.getInstance().flush();
+            callbackContext.success();
         } else {
             return false;
         }
